@@ -1,0 +1,7 @@
+Model,Train time (s),MAE,MSE,RMSE,R2,Advantages,Limitations
+Dummy (mean),0.033,25.7137,880.8155,29.6785,-0.0,Reference point only,Ignores all features
+Linear Regression,0.056,0.7997,1.1061,1.0517,0.9987,"Fast, simple, best on every metric here",Assumes additive effects; would miss complex interactions
+Decision Tree,0.108,1.2426,2.83,1.6823,0.9968,"Easy to explain, no scaling needed",Coarse predictions (steps); lower R2 than the top models
+Random Forest,2.819,1.0069,1.8373,1.3555,0.9979,"Handles non-linear effects, stable",Slower than Linear Regression with no accuracy gain here
+KNN,0.034,2.7637,17.73,4.2107,0.9799,"Simple, no assumptions about shape",Worst R2 and MAE of the real models; distance gets noisy with many one-hot columns
+SVR (RBF),2.297,1.0294,1.8587,1.3633,0.9979,"Flexible, accurate (R2 0.9979)",Slower; needs scaled inputs; hard to interpret

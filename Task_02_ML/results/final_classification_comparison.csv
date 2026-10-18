@@ -1,0 +1,11 @@
+Model,Stage,Fit time (s),Accuracy,Precision,Recall,F1,Search time (s),Advantages,Limitations
+Decision Tree,Baseline,0.119,0.7139,0.4634,0.5108,0.4859,,Easy to visualise and explain,Unpruned baseline had the lowest baseline F1 (0.4859); needs depth limits
+Decision Tree,Tuned,0.082,0.7423,0.5091,0.7527,0.6074,9.2,Easy to visualise and explain,Unpruned baseline had the lowest baseline F1 (0.4859); needs depth limits
+KNN,Baseline,0.059,0.7594,0.5512,0.4919,0.5199,,Simple and the fastest to fit here (it mostly stores the data),"No class_weight option, so recall stayed low (0.5296); sensitive to scaling and many one-hot columns"
+KNN,Tuned,0.055,0.7872,0.6137,0.5296,0.5685,3.5,Simple and the fastest to fit here (it mostly stores the data),"No class_weight option, so recall stayed low (0.5296); sensitive to scaling and many one-hot columns"
+Logistic Regression,Baseline,0.077,0.8021,0.661,0.5188,0.5813,,"Very fast to train, simple, easy to explain; highest recall after tuning (0.7823)",Assumes straight-line effects; tuned accuracy (0.7381) is barely above the 'always No' accuracy (0.7352)
+Logistic Regression,Tuned,0.114,0.7381,0.5035,0.7823,0.6126,5.3,"Very fast to train, simple, easy to explain; highest recall after tuning (0.7823)",Assumes straight-line effects; tuned accuracy (0.7381) is barely above the 'always No' accuracy (0.7352)
+Random Forest,Baseline,0.834,0.7751,0.5993,0.4543,0.5168,,"Handles non-linear effects, gives feature importance; best CV F1 (0.6397)","Longest tuning search (173.8s); slower to fit than Logistic Regression, KNN or Decision Tree; harder to explain"
+Random Forest,Tuned,1.632,0.7658,0.5416,0.7527,0.6299,173.8,"Handles non-linear effects, gives feature importance; best CV F1 (0.6397)","Longest tuning search (173.8s); slower to fit than Logistic Regression, KNN or Decision Tree; harder to explain"
+SVM (RBF),Baseline,1.329,0.7979,0.6618,0.4839,0.559,,Handles non-linear boundaries; tied for best F1 (0.6301),Second-longest search (74.1s) and slowest final fit; no built-in feature importance
+SVM (RBF),Tuned,1.737,0.7601,0.5325,0.7715,0.6301,74.1,Handles non-linear boundaries; tied for best F1 (0.6301),Second-longest search (74.1s) and slowest final fit; no built-in feature importance
