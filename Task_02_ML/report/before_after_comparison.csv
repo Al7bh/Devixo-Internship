@@ -1,0 +1,11 @@
+Model,Stage,Fit time (s),Accuracy,Precision,Recall,F1
+Decision Tree,Baseline,0.419,0.7139,0.4634,0.5108,0.4859
+Decision Tree,Tuned,0.056,0.7423,0.5091,0.7527,0.6074
+KNN,Baseline,0.189,0.7594,0.5512,0.4919,0.5199
+KNN,Tuned,0.055,0.7872,0.6137,0.5296,0.5685
+Logistic Regression,Baseline,0.583,0.8021,0.661,0.5188,0.5813
+Logistic Regression,Tuned,0.474,0.7381,0.5035,0.7823,0.6126
+Random Forest,Baseline,3.355,0.7751,0.5993,0.4543,0.5168
+Random Forest,Tuned,1.619,0.7658,0.5416,0.7527,0.6299
+SVM (RBF),Baseline,3.225,0.7979,0.6618,0.4839,0.559
+SVM (RBF),Tuned,1.81,0.7601,0.5325,0.7715,0.6301

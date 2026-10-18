@@ -1,0 +1,6 @@
+Model,Search time (s),Final fit time (s),CV F1 (train),Accuracy,Precision,Recall,F1,Best params
+Logistic Regression,9.4,0.474,0.6299,0.7381,0.5035,0.7823,0.6126,"{'model__C': 10, 'model__class_weight': 'balanced'}"
+Decision Tree,14.9,0.056,0.6256,0.7423,0.5091,0.7527,0.6074,"{'model__class_weight': 'balanced', 'model__max_depth': 5, 'model__min_samples_leaf': 30}"
+Random Forest,180.2,1.619,0.6397,0.7658,0.5416,0.7527,0.6299,"{'model__class_weight': 'balanced', 'model__max_depth': 10, 'model__min_samples_leaf': 10, 'model__n_estimators': 300}"
+KNN,4.4,0.055,0.6056,0.7872,0.6137,0.5296,0.5685,"{'model__n_neighbors': 31, 'model__weights': 'uniform'}"
+SVM (RBF),79.0,1.81,0.6242,0.7601,0.5325,0.7715,0.6301,"{'model__C': 1, 'model__class_weight': 'balanced', 'model__gamma': 'scale'}"
