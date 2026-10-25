@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+# Secrets - never commit these
+.env
+kaggle.json
+*.key

@@ -1,0 +1,128 @@
+{
+  "project": "Used-car price prediction (Devixo Solutions AI/ML Internship, Task 03)",
+  "created": "2026-10-24",
+  "selected_model": "XGBoost (optional)",
+  "best_hyperparameters": {
+    "subsample": 0.85,
+    "n_estimators": 600,
+    "min_child_weight": 3,
+    "max_depth": 5,
+    "learning_rate": 0.03,
+    "colsample_bytree": 0.6
+  },
+  "selection_rule": "lowest 5-fold cross-validated RMSLE on the training set after RandomizedSearchCV",
+  "cv_metrics_train": {
+    "RMSLE": 0.2178,
+    "RMSLE_std": 0.0113,
+    "R2": 0.8825,
+    "MAE": 77569.7266
+  },
+  "test_metrics": {
+    "R2": 0.9275337490787758,
+    "MAE": 71361.49683497926,
+    "RMSE": 126069.09266935583,
+    "RMSLE": 0.21528234152848935,
+    "MedAPE_%": 12.310214488636365
+  },
+  "indicative_range_ratio": {
+    "low": 0.7848835434544371,
+    "high": 1.272497314185279,
+    "test_coverage": 0.7987012987012987
+  },
+  "features": {
+    "numeric": [
+      "car_age",
+      "log_km_driven",
+      "mileage",
+      "engine",
+      "max_power"
+    ],
+    "categorical": [
+      "brand",
+      "fuel",
+      "transmission",
+      "owner"
+    ],
+    "required_input_columns": [
+      "name",
+      "year",
+      "km_driven",
+      "fuel",
+      "transmission",
+      "owner",
+      "mileage",
+      "engine",
+      "max_power"
+    ]
+  },
+  "training_rows": 5540,
+  "test_rows": 1386,
+  "currency_note": "Prices are in the dataset's currency (assumed Indian rupees; CarDekho listings). Newest car year is 2020.",
+  "input_choices": {
+    "brand": [
+      "Maruti",
+      "Hyundai",
+      "Mahindra",
+      "Tata",
+      "Ford",
+      "Honda",
+      "Toyota",
+      "Chevrolet",
+      "Renault",
+      "Volkswagen",
+      "Skoda",
+      "Nissan",
+      "Datsun",
+      "BMW",
+      "Mercedes-Benz",
+      "Fiat",
+      "Audi",
+      "Jeep",
+      "Mitsubishi"
+    ],
+    "fuel": [
+      "CNG",
+      "Diesel",
+      "LPG",
+      "Petrol"
+    ],
+    "transmission": [
+      "Automatic",
+      "Manual"
+    ],
+    "owner": [
+      "First Owner",
+      "Second Owner",
+      "Third Owner",
+      "Fourth & Above Owner",
+      "Test Drive Car"
+    ]
+  },
+  "input_ranges": {
+    "year": [
+      1983,
+      2020
+    ],
+    "km_driven_p99": 243659.99999999802,
+    "mileage_p01_p99": [
+      11.1,
+      28.4
+    ],
+    "engine_cc_p01_p99": [
+      796.0,
+      2967.0
+    ],
+    "max_power_bhp_p01_p99": [
+      37.0,
+      190.0
+    ]
+  },
+  "library_versions": {
+    "python": "3.12.3",
+    "scikit-learn": "1.8.0",
+    "pandas": "3.0.2",
+    "numpy": "2.4.4",
+    "joblib": "1.5.3",
+    "xgboost": "3.4.1"
+  }
+}
