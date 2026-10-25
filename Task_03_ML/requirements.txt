@@ -1,3 +1,4 @@
+# Versions below are the ones this project was built and tested with (Python 3.12).
 # Saved .joblib/.pkl models must be loaded with the SAME scikit-learn version they were saved with.
 numpy==2.4.4
 pandas==3.0.2

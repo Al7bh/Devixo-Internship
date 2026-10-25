@@ -118,11 +118,19 @@
     ]
   },
   "library_versions": {
-    "python": "3.12.3",
+    "python": "3.13.17",
     "scikit-learn": "1.8.0",
     "pandas": "3.0.2",
     "numpy": "2.4.4",
     "joblib": "1.5.3",
     "xgboost": "3.4.1"
+  },
+  "retrained_on": "2026-10-25",
+  "retrained_test_metrics": {
+    "R2": 0.9276427754044968,
+    "MAE": 71674.32267428751,
+    "RMSE": 125974.22075656429,
+    "RMSLE": 0.21601488965048235,
+    "MedAPE_%": 12.501898538961036
   }
 }

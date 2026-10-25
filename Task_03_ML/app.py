@@ -59,6 +59,25 @@ def input_warnings(meta, km_driven, mileage, engine, max_power):
     return msgs
 
 
+def version_problems(meta):
+    """Compare the library versions the model was SAVED with against the ones installed now.
+    A saved XGBoost / scikit-learn model can fail to load (or behave differently) on other versions."""
+    installed = {}
+    try:
+        import sklearn
+        installed["scikit-learn"] = sklearn.__version__
+    except ImportError:
+        pass
+    try:
+        import xgboost
+        installed["xgboost"] = xgboost.__version__
+    except ImportError:
+        pass
+    saved = meta.get("library_versions", {})
+    return [f"{lib}: model saved with {saved[lib]}, installed here {ver}"
+            for lib, ver in installed.items() if lib in saved and saved[lib] != ver]
+
+
 def format_rupees(value):
     return f"Rs {value:,.0f}  (about {value / 1e5:.2f} lakh)"
 
@@ -86,8 +105,26 @@ if not (MODEL_PATH.exists() and META_PATH.exists()):
              "(it creates the `models/` folder contents).")
     st.stop()
 
-model = load_model()
 meta = load_metadata()
+problems = version_problems(meta)
+try:
+    model = load_model()
+except Exception as err:               # usually a library-version mismatch (for example XGBoostError)
+    st.error("The saved model could not be loaded on this computer.")
+    st.write("This almost always means the installed library versions differ from the ones the model was saved with.")
+    if problems:
+        st.write("Version differences found:")
+        st.code("\n".join(problems))
+    st.write("**Fix 1 (recommended):** install the pinned versions, then restart the app:")
+    st.code("pip install -r requirements.txt")
+    st.write("**Fix 2:** rebuild the model with the libraries installed here (takes seconds, no long search):")
+    st.code("python -m src.retrain")
+    with st.expander("Technical details"):
+        st.write(f"{type(err).__name__}: {err}")
+    st.stop()
+if problems:
+    st.warning("Library versions differ from the ones used to save the model (" + "; ".join(problems)
+               + "). It loaded, but if you see odd results run `python -m src.retrain`.")
 choices = meta["input_choices"]
 y_min, y_max = meta["input_ranges"]["year"]
 

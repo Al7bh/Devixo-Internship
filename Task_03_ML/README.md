@@ -114,14 +114,14 @@ Models trained (task sheet: at least four): **Decision Tree, Random Forest, Supp
 │   └── 03_modeling_tuning_and_evaluation.ipynb
 ├── src/
 │   ├── car_features.py            feature-engineering transformer
-│   └── modeling.py                pipeline builder, metrics, final feature lists
+│   ├── modeling.py                pipeline builder, metrics, final feature lists
+│   └── retrain.py                 rebuilds the saved model on this computer (see Troubleshooting)
 ├── models/                        best_model.joblib, best_model.pkl, model_metadata.json
 ├── reports/                       figures and result tables (CSV)
-├── tests/                         30 automated tests
+├── tests/                         33 automated tests
 ├── report/
 │   ├── Task_03_Report.pdf          18-page project report (same format as the Task 02 report)
 │   └── build_report_task3.py       rebuilds the report from the notebook outputs
-├── docs/mentor_viva_guide.md      questions and answers about this project
 └── requirements.txt
 ```
 
@@ -135,12 +135,34 @@ source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
 jupyter notebook                    # run notebooks 01, 02, 03 in order
-pytest                              # 30 tests
+pytest                              # 33 tests
 streamlit run app.py                # prediction app
 python report/build_report_task3.py # rebuild report/Task_03_Report.pdf from the notebook outputs
 ```
 
 Notebook 03 runs the hyperparameter search; it took roughly 15 minutes on a single-CPU machine (faster on more cores). The trained model files are already included, so the app and tests run without retraining.
+
+## 8b. Troubleshooting: "XGBoostError: input stream corrupted" or other errors when loading the model
+
+A saved model can only be loaded safely with the **same library versions it was saved with**, especially XGBoost and scikit-learn. This model was saved with XGBoost 3.4.1 and scikit-learn 1.8.0. If you see this error, your installed versions are different. Check them:
+
+```bash
+python -c "import xgboost, sklearn; print(xgboost.__version__, sklearn.__version__)"
+```
+
+**Fix 1 (recommended):** install the pinned versions, ideally in a fresh virtual environment (all of them have wheels for Windows, macOS and Linux, Python 3.11 to 3.13):
+
+```bash
+pip install -r requirements.txt
+```
+
+**Fix 2:** rebuild the model with the libraries you already have. This reads the best settings found in notebook 03 and retrains in seconds (no long search). It prints the test-set scores next to the original ones so you can check they match:
+
+```bash
+python -m src.retrain
+```
+
+The app also shows these two fixes on screen if the model cannot be loaded, and warns if the installed versions differ from the saved ones.
 
 ## 9. Task requirement checklist
 
@@ -157,4 +179,4 @@ Notebook 03 runs the hyperparameter search; it took roughly 15 minutes on a sing
 
 ## 10. Quality checks
 
-`pytest` runs 30 tests: parsing and brand extraction, missing-column errors, no train/test overlap, size requirement, Joblib and Pickle giving identical predictions, a regression guard on test quality, handling of unseen brands and missing specs, a sanity check that a newer low-mileage car is priced above an older one, and headless tests of the Streamlit app.
+`pytest` runs 33 tests: parsing and brand extraction, missing-column errors, no train/test overlap, size requirement, Joblib and Pickle giving identical predictions, a regression guard on test quality, the model-rebuild script, handling of unseen brands and missing specs, a sanity check that a newer low-mileage car is priced above an older one, and headless tests of the Streamlit app (including what it shows when the model file cannot be loaded).

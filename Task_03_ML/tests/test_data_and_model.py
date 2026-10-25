@@ -112,3 +112,17 @@ def test_metadata_is_complete_and_consistent():
                 "input_choices", "input_ranges", "indicative_range_ratio"]:
         assert key in meta
     assert meta["training_rows"] + meta["test_rows"] >= 3000
+
+
+@needs_model
+def test_retrain_script_rebuilds_a_model_that_matches_the_original(tmp_path):
+    """`python -m src.retrain` is the recovery path for library-version problems; it must really work."""
+    import subprocess, sys
+    done = subprocess.run([sys.executable, "-W", "ignore", "-m", "src.retrain", "--output-dir", str(tmp_path)],
+                          cwd=ROOT, capture_output=True, text=True, timeout=900)
+    assert done.returncode == 0, done.stderr[-800:]
+    assert (tmp_path / "best_model.joblib").exists() and (tmp_path / "best_model.pkl").exists()
+    test = pd.read_csv(TEST)
+    original = json.load(open(META))["test_metrics"]
+    m = regression_metrics(test[TARGET], joblib.load(tmp_path / "best_model.joblib").predict(test[RAW_INPUT_COLUMNS]))
+    assert abs(m["RMSLE"] - original["RMSLE"]) < 0.01

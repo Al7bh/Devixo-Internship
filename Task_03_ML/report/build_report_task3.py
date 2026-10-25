@@ -551,7 +551,8 @@ st += [P("17. Part 4 - Save the Best Model (Joblib and Pickle)", "h1"),
        *bullets(["Both files reload and give predictions identical to the in-memory model on the whole test set.",
                  "A brand-new Python process loads both files and produces identical predictions.",
                  "The model handles missing specifications and a brand it has never seen (a Tesla, absent from training) and still returns a price.",
-                 f"Saved with scikit-learn {ver['scikit-learn']}; `requirements.txt` pins the versions because a saved model should be loaded with the same version. Pickle files must only be loaded from trusted sources."])]
+                 f"Saved with scikit-learn {ver['scikit-learn']} and XGBoost {ver.get('xgboost', '-')}; `requirements.txt` pins the versions because a saved model can only be loaded safely with the same versions. Pickle files must only be loaded from trusted sources.",
+                 "**Recovery path (found when the model was first run on another computer):** with different library versions, loading failed with `XGBoostError: input stream corrupted`. `python -m src.retrain` now rebuilds the model in seconds from the saved best settings, using the libraries installed on that computer, and prints its test scores next to the original ones (they matched exactly when tested). The app also explains the problem and both fixes on screen instead of crashing."])]
 
 # ------------------------------------------------------------------ 18 bonus
 st += [P("18. Bonus - Streamlit Prediction Interface", "h1"),
