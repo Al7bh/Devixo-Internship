@@ -1,0 +1,118 @@
+{
+  "n_train": 8000,
+  "overall_churn_rate_train": 0.20375,
+  "numeric_median": {
+    "credit_score": 652.0,
+    "age": 37.0,
+    "tenure": 5.0,
+    "balance": 97055.145,
+    "estimated_salary": 99446.94
+  },
+  "numeric_min": {
+    "credit_score": 350.0,
+    "age": 18.0,
+    "tenure": 0.0,
+    "balance": 0.0,
+    "estimated_salary": 11.58
+  },
+  "numeric_max": {
+    "credit_score": 850.0,
+    "age": 92.0,
+    "tenure": 10.0,
+    "balance": 238387.56,
+    "estimated_salary": 199992.48
+  },
+  "mode": {
+    "country": "France",
+    "gender": "Male",
+    "products_number": 1,
+    "credit_card": 1,
+    "active_member": 1
+  },
+  "segment_churn": {
+    "country": {
+      "France": {
+        "churn_rate": 0.1590282995241673,
+        "count": 3993
+      },
+      "Germany": {
+        "churn_rate": 0.3306733167082294,
+        "count": 2005
+      },
+      "Spain": {
+        "churn_rate": 0.16583416583416583,
+        "count": 2002
+      }
+    },
+    "gender": {
+      "Female": {
+        "churn_rate": 0.2507611403265984,
+        "count": 3613
+      },
+      "Male": {
+        "churn_rate": 0.16503305219968087,
+        "count": 4387
+      }
+    },
+    "products_number": {
+      "1": {
+        "churn_rate": 0.27978383689511177,
+        "count": 4071
+      },
+      "2": {
+        "churn_rate": 0.07380174291938998,
+        "count": 3672
+      },
+      "3": {
+        "churn_rate": 0.821256038647343,
+        "count": 207
+      },
+      "4": {
+        "churn_rate": 1.0,
+        "count": 50
+      }
+    },
+    "credit_card": {
+      "0": {
+        "churn_rate": 0.2128755364806867,
+        "count": 2330
+      },
+      "1": {
+        "churn_rate": 0.2,
+        "count": 5670
+      }
+    },
+    "active_member": {
+      "0": {
+        "churn_rate": 0.26694150992012367,
+        "count": 3881
+      },
+      "1": {
+        "churn_rate": 0.1442097596504006,
+        "count": 4119
+      }
+    },
+    "age_group": {
+      "31-40": {
+        "churn_rate": 0.12252302539771141,
+        "count": 3583
+      },
+      "41-50": {
+        "churn_rate": 0.33698030634573306,
+        "count": 1828
+      },
+      "51-60": {
+        "churn_rate": 0.5565891472868217,
+        "count": 645
+      },
+      "60+": {
+        "churn_rate": 0.248,
+        "count": 375
+      },
+      "<=30": {
+        "churn_rate": 0.07839388145315487,
+        "count": 1569
+      }
+    }
+  }
+}

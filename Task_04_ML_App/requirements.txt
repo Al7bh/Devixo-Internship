@@ -1,0 +1,10 @@
+# Versions used to train the saved models. The saved .joblib files only load
+# reliably with the SAME scikit-learn version, so keep these pinned.
+# Tested with Python 3.12.
+pandas==3.0.2
+numpy==2.4.4
+scikit-learn==1.8.0
+matplotlib==3.10.8
+seaborn==0.13.2
+streamlit==1.66.1
+joblib==1.5.3

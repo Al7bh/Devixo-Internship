@@ -1,0 +1,6 @@
+pytest results (run on 2026-11-01):
+tests/test_data_and_features.py: 20 passed in 3.19s
+tests/test_models.py: 46 passed in 3.02s
+tests/test_notebooks.py: 7 passed in 1.28s
+tests/test_app.py: 14 passed in 11.97s
+ALL TESTS: 87 passed in 12.16s

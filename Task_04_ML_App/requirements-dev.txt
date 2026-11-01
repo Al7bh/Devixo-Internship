@@ -1,0 +1,9 @@
+# Extra tools for notebooks, testing and building the PDF report (not needed to run the app)
+-r requirements.txt
+jupyterlab
+nbformat
+nbclient
+nbconvert
+ipykernel
+pytest==9.2.0
+reportlab==4.4.10
